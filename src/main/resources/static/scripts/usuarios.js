@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let usuarioEditandoId = null;
 
     function cargarUsuarios() {
-        fetch("http://localhost:8080/api/usuarios")
+        fetch("/api/usuarios")
             .then(response => response.json())
             .then(data => {
                 tabla.innerHTML = "";
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.editarUsuario = function (id) {
-        fetch(`http://localhost:8080/api/usuarios/${id}`)
+        fetch(`/api/usuarios/${id}`)
             .then(response => {
                 if (!response.ok) throw new Error("Usuario no encontrado");
                 return response.json();
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.eliminarUsuario = function (id) {
         if (confirm("¿Estás seguro de eliminar este usuario?")) {
-            fetch(`http://localhost:8080/api/usuarios/${id}`, {
+            fetch(`/api/usuarios/${id}`, {
                 method: "DELETE"
             })
                 .then(() => cargarUsuarios())
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         if (modoEdicion) {
-            fetch(`http://localhost:8080/api/usuarios/${usuarioEditandoId}`, {
+            fetch(`/api/usuarios/${usuarioEditandoId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .catch(error => alert(error.message));
         } else {
-            fetch("http://localhost:8080/api/usuarios", {
+            fetch("/api/usuarios", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

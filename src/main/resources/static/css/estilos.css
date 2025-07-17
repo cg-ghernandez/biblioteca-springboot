@@ -101,24 +101,48 @@ form {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-form input, form button {
+form input, form select {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 1rem;
 }
 
-form button {
+/* Botón general */
+button, form button {
+    padding: 12px 18px;
+    font-size: 1rem;
     background-color: #006400;
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.2s;
 }
 
-form button:hover {
+button:hover, form button:hover {
     background-color: #004d00;
 }
+
+
+form label,
+form input,
+form select {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+form select {
+    padding: 14px 12px; /* aumenta la altura */
+    font-size: 1rem;     /* agranda el texto */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
 
 /* Footer */
 footer {
@@ -147,4 +171,25 @@ footer {
     .content {
         margin-left: 0;
     }
+}
+/* Botones de acción en tablas */
+table button {
+    padding: 10px 16px;
+    margin: 0 4px;
+    font-size: 0.95rem;
+    background-color: #006400;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+table button:hover {
+    background-color: #004d00;
+}
+
+/* Centrar acciones */
+td:last-child {
+    text-align: center;
+    vertical-align: middle;
 }

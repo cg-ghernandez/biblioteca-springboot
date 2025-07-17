@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let libroEditandoId = null;
 
     function cargarLibros() {
-        fetch("http://localhost:8080/api/libros")
+        fetch("/api/libros")
             .then(response => response.json())
             .then(data => {
                 tabla.innerHTML = "";
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function cargarCategorias() {
-        fetch("http://localhost:8080/api/categorias")
+        fetch("/api/categorias")
             .then(response => response.json())
             .then(categorias => {
                 selectCategoria.innerHTML = '<option value="">Seleccione una categoría</option>';
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.editarLibro = function (id) {
-        fetch(`http://localhost:8080/api/libros/${id}`)
+        fetch(`/api/libros/${id}`)
             .then(response => {
                 if (!response.ok) throw new Error("Libro no encontrado");
                 return response.json();
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.eliminarLibro = function (id) {
         if (confirm("¿Estás seguro de eliminar este libro?")) {
-            fetch(`http://localhost:8080/api/libros/${id}`, {
+            fetch(`/api/libros/${id}`, {
                 method: "DELETE"
             })
                 .then(() => cargarLibros())
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
     formulario.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        const libro = {
+        const nuevoLibro = {
             titulo: document.getElementById("titulo").value,
             autor: document.getElementById("autor").value,
             isbn: document.getElementById("isbn").value,
@@ -87,12 +87,12 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         if (modoEdicion) {
-            fetch(`http://localhost:8080/api/libros/${libroEditandoId}`, {
+            fetch(`/api/libros/${libroEditandoId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(libro)
+                body: JSON.stringify(nuevoLibro)
             })
                 .then(response => {
                     if (!response.ok) throw new Error("No se pudo actualizar el libro");
@@ -106,12 +106,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .catch(error => alert(error.message));
         } else {
-            fetch("http://localhost:8080/api/libros", {
+            fetch("/api/libros", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(libro)
+                body: JSON.stringify(nuevoLibro)
             })
                 .then(response => {
                     if (!response.ok) throw new Error("No se pudo registrar el libro");

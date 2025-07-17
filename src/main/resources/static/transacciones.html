@@ -1,0 +1,81 @@
+<!-- Archivo: src/main/resources/static/transacciones.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transacciones - Biblioteca USM</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<div class="main">
+    <div class="sidebar">
+        <h2>Biblioteca USM</h2>
+        <ul>
+            <li><a href="libros.html">Libros</a></li>
+            <li><a href="usuarios.html">Usuarios</a></li>
+            <li><a href="transacciones.html">Transacciones</a></li>
+            <li><a href="devoluciones.html">Devoluciones</a></li>
+            <li><a href="multas.html">Multas</a></li>
+            <li><a href="categorias.html">Categorías</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Transacciones</h1>
+
+        <h2>Registrar Transacción</h2>
+        <form id="formularioTransaccion">
+            <label for="usuario">Usuario:</label>
+            <select id="usuario" required>
+                <option value="">Seleccione un usuario</option>
+            </select>
+
+            <label for="libro">Libro:</label>
+            <select id="libro" required>
+                <option value="">Seleccione un libro</option>
+            </select>
+
+            <label for="fechaPrestamo">Fecha Préstamo:</label>
+            <input type="date" id="fechaPrestamo"> <!-- Eliminado required -->
+
+            <label for="fechaDevolucion">Fecha Devolución:</label>
+            <input type="date" id="fechaDevolucion">
+
+            <label for="tipo">Tipo:</label>
+            <select id="tipo" required>
+                <option value="">Seleccione tipo</option>
+                <option value="PRESTAMO">Préstamo</option>
+                <option value="DEVOLUCION">Devolución</option>
+            </select>
+
+            <button type="submit">Guardar</button>
+        </form>
+
+        <h2>Historial de Transacciones</h2>
+        <table id="tablaTransacciones">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Libro</th>
+                <th>Fecha Préstamo</th>
+                <th>Fecha Devolución</th>
+                <th>Tipo</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Transacciones se cargarán aquí -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<footer>
+    Alumno Gerald Hernandez Solis
+</footer>
+
+<script src="scripts/transacciones.js"></script>
+</body>
+</html>
