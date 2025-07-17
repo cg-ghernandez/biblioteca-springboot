@@ -2,6 +2,7 @@ package com.biblioteca.modelo;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Data
@@ -16,5 +17,6 @@ public class Libro {
     private boolean disponible;
     @ManyToOne
     @JoinColumn(name = "categoria_id")
+    @JsonBackReference
     private Categoria categoria;
 }

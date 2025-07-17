@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Data
@@ -17,6 +18,7 @@ public class Categoria {
 
     private String nombre;
 
-    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "categoria") //, cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Libro> libros;
 }

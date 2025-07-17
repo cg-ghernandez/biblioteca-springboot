@@ -33,4 +33,13 @@ public class UsuarioControlador {
     public void eliminarUsuario(@PathVariable Long id) {
         usuarioServicio.eliminarUsuario(id);
     }
+
+    @PutMapping("/{id}")
+    public Usuario actualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuarioActualizado) {
+        Usuario usuarioExistente = usuarioServicio.obtenerUsuarioPorId(id);
+        usuarioExistente.setNombre(usuarioActualizado.getNombre());
+        usuarioExistente.setEmail(usuarioActualizado.getEmail());
+        return usuarioServicio.guardarUsuario(usuarioExistente);
+    }
+
 }
