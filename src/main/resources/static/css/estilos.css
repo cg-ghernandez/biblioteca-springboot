@@ -1,0 +1,150 @@
+/* estilos.css */
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Layout */
+.main {
+    display: flex;
+    flex: 1;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #5eb270; /* color más oscuro */
+    color: white;
+    padding: 40px 30px 0 30px; /* más separación */
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-image: url('../img/libros_fondo_verde.png');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain;
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 20px;
+}
+
+.sidebar ul li a {
+    color: white !important;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: block;
+    padding-left: 5px;
+    transition: color 0.2s;
+}
+
+.sidebar ul li a:hover {
+    color: #cccccc;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 30px;
+    flex: 1;
+    background-color: #f9f9f9;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+th {
+    background-color: #006400;
+    color: white;
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+/* Formulario */
+form {
+    background-color: white;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+form input, form button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    background-color: #006400;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #004d00;
+}
+
+/* Footer */
+footer {
+    background-color: #5eb270;
+    padding: 12px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: white;
+    margin-top: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        background-size: cover;
+        padding: 20px;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+}
