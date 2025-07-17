@@ -14,4 +14,7 @@ public class Libro {
     private String autor;
     private String isbn;
     private boolean disponible;
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 }

@@ -22,4 +22,6 @@ public class HistorialPrestamo {
     private LocalDate fechaPrestamo;
     private LocalDate fechaDevolucion;
     private boolean devuelto;
+
+    private String estado; // Ej: "Bueno", "Dañado", "Perdido"
 }
