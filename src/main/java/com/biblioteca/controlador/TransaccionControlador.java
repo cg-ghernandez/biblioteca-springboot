@@ -15,23 +15,23 @@ public class TransaccionControlador {
     @Autowired
     private TransaccionServicio transaccionServicio;
 
+    @PostMapping
+    public Transaccion registrarTransaccion(@RequestBody Transaccion transaccion) {
+        return transaccionServicio.guardarTransaccion(transaccion);
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Transaccion> obtenerTransaccionPorId(@PathVariable Long id) {
+        return transaccionServicio.obtenerTransaccionPorId(id);
+    }
+
     @GetMapping
     public List<Transaccion> listarTransacciones() {
         return transaccionServicio.listarTransacciones();
     }
 
-    @GetMapping("/{id}")
-    public Optional<Transaccion> obtenerPorId(@PathVariable Long id) {
-        return transaccionServicio.obtenerTransaccionPorId(id);
-    }
-
-    @PostMapping
-    public Transaccion guardar(@RequestBody Transaccion transaccion) {
-        return transaccionServicio.guardarTransaccion(transaccion);
-    }
-
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Long id) {
+    public void eliminarTransaccion(@PathVariable Long id) {
         transaccionServicio.eliminarTransaccion(id);
     }
 }

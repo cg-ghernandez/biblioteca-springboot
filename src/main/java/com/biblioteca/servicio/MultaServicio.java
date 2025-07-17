@@ -23,6 +23,19 @@ public class MultaServicio {
     }
 
     public Multa guardarMulta(Multa multa) {
+        if (multa.getDevolucion() == null) {
+            throw new RuntimeException("Debe asociar la multa a una devolución válida.");
+        }
+
+        // Verificar si ya existe una multa para esa devolución
+        Optional<Multa> multaExistente = multaRepositorio.findAll().stream()
+                .filter(m -> m.getDevolucion().getId().equals(multa.getDevolucion().getId()))
+                .findFirst();
+
+        if (multaExistente.isPresent()) {
+            throw new RuntimeException("Ya existe una multa para esta devolución.");
+        }
+
         return multaRepositorio.save(multa);
     }
 
