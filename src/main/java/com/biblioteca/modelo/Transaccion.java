@@ -1,5 +1,7 @@
 package com.biblioteca.modelo;
 
+
+import com.biblioteca.modelo.enums.TipoTransaccion;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
@@ -13,12 +15,15 @@ public class Transaccion {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     @ManyToOne
+    @JoinColumn(name = "libro_id")
     private Libro libro;
 
     private LocalDate fechaPrestamo;
     private LocalDate fechaDevolucion;
-    private String tipo;
+    @Enumerated(EnumType.STRING)
+    private TipoTransaccion tipo;
 }
