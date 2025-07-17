@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td>${tx.fechaPrestamo || ''}</td>
                         <td>${tx.fechaDevolucion || ''}</td>
                         <td>${tx.tipo}</td>
-                        <td><button onclick="eliminarTransaccion(${tx.id})">Eliminar</button></td>
+                        <td><button onclick="eliminarTransaccion(${tx.id})">🗑️ Eliminar</button></td>
                     `;
                     tabla.appendChild(fila);
                 });

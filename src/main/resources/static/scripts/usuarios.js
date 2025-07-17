@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td>${usuario.nombre}</td>
                         <td>${usuario.email}</td>
                         <td>
-                            <button onclick="editarUsuario(${usuario.id})">Editar</button>
-                            <button onclick="eliminarUsuario(${usuario.id})">Eliminar</button>
+                            <button onclick="editarUsuario(${usuario.id})">✏️ Editar</button>
+                            <button onclick="eliminarUsuario(${usuario.id})">🗑️ Eliminar</button>
                         </td>
                     `;
                     tabla.appendChild(fila);
