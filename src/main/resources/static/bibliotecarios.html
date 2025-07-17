@@ -1,15 +1,14 @@
-<!-- Archivo: src/main/resources/static/usuarios.html -->
+<!-- Archivo: src/main/resources/static/bibliotecarios.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios - Biblioteca USM</title>
+    <title>Bibliotecarios - Biblioteca USM</title>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
 <div class="main">
-    <!-- Sidebar -->
     <div class="sidebar">
         <h2>Biblioteca USM</h2>
         <ul>
@@ -23,29 +22,30 @@
         </ul>
     </div>
 
-    <!-- Contenido principal -->
     <div class="content">
-        <h1>Biblioteca USM - Proyecto Progra</h1>
+        <h1>Bibliotecarios</h1>
 
-        <h2>Registrar Usuario</h2>
-        <form id="formularioUsuario">
-            <input type="text" id="nombre" placeholder="Nombre del usuario" required>
+        <h2>Registrar Bibliotecario</h2>
+        <form id="formularioBibliotecario">
+            <input type="text" id="nombre" placeholder="Nombre completo" required>
             <input type="email" id="email" placeholder="Correo electrónico" required>
+            <input type="text" id="telefono" placeholder="Teléfono" required>
             <button type="submit">💾 Guardar</button>
         </form>
 
-        <h2 style="margin-top: 40px;">Lista de Usuarios</h2>
-        <table id="tablaUsuarios">
+        <h2>Lista de Bibliotecarios</h2>
+        <table id="tablaBibliotecarios">
             <thead>
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Email</th>
+                <th>Teléfono</th>
                 <th>Acciones</th>
             </tr>
             </thead>
             <tbody>
-            <!-- Los usuarios se insertarán aquí -->
+            <!-- Bibliotecarios se cargarán aquí -->
             </tbody>
         </table>
     </div>
@@ -55,6 +55,6 @@
     Alumno Gerald Hernandez Solis
 </footer>
 
-<script src="scripts/usuarios.js"></script>
+<script src="scripts/bibliotecarios.js"></script>
 </body>
 </html>

@@ -18,6 +18,7 @@
             <li><a href="devoluciones.html">Devoluciones</a></li>
             <li><a href="multas.html">Multas</a></li>
             <li><a href="categorias.html">Categorías</a></li>
+            <li><a href="bibliotecarios.html">Bibliotecarios</a></li>
         </ul>
     </div>
 
@@ -36,8 +37,13 @@
                 <option value="">Seleccione un libro</option>
             </select>
 
+            <label for="bibliotecario">Bibliotecario:</label>
+            <select id="bibliotecario" required>
+                <option value="">Seleccione un bibliotecario</option>
+            </select>
+
             <label for="fechaPrestamo">Fecha Préstamo:</label>
-            <input type="date" id="fechaPrestamo"> <!-- Eliminado required -->
+            <input type="date" id="fechaPrestamo">
 
             <label for="fechaDevolucion">Fecha Devolución:</label>
             <input type="date" id="fechaDevolucion">
@@ -59,6 +65,7 @@
                 <th>ID</th>
                 <th>Usuario</th>
                 <th>Libro</th>
+                <th>Bibliotecario</th>
                 <th>Fecha Préstamo</th>
                 <th>Fecha Devolución</th>
                 <th>Tipo</th>

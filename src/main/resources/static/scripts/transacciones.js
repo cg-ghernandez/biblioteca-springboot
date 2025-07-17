@@ -4,32 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const selectUsuario = document.getElementById("usuario");
     const selectLibro = document.getElementById("libro");
+    const selectBibliotecario = document.getElementById("bibliotecario");
     const inputFechaPrestamo = document.getElementById("fechaPrestamo");
     const inputFechaDevolucion = document.getElementById("fechaDevolucion");
     const selectTipo = document.getElementById("tipo");
-
-    function ajustarCamposSegunTipo() {
-        const tipo = selectTipo.value;
-
-        if (tipo === "PRESTAMO") {
-            inputFechaPrestamo.disabled = false;
-            inputFechaPrestamo.required = true;
-            inputFechaDevolucion.disabled = true;
-            inputFechaDevolucion.required = false;
-            inputFechaDevolucion.value = "";
-        } else if (tipo === "DEVOLUCION") {
-            inputFechaPrestamo.disabled = true;
-            inputFechaPrestamo.required = false;
-            inputFechaPrestamo.value = "";
-            inputFechaDevolucion.disabled = false;
-            inputFechaDevolucion.required = true;
-        } else {
-            inputFechaPrestamo.disabled = false;
-            inputFechaDevolucion.disabled = false;
-        }
-    }
-
-    selectTipo.addEventListener("change", ajustarCamposSegunTipo);
 
     function cargarUsuarios() {
         fetch("/api/usuarios")
@@ -59,6 +37,20 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
+    function cargarBibliotecarios() {
+        fetch("/api/bibliotecarios")
+            .then(res => res.json())
+            .then(data => {
+                selectBibliotecario.innerHTML = '<option value="">Seleccione un bibliotecario</option>';
+                data.forEach(b => {
+                    const option = document.createElement("option");
+                    option.value = b.id;
+                    option.textContent = b.nombre;
+                    selectBibliotecario.appendChild(option);
+                });
+            });
+    }
+
     function cargarTransacciones() {
         fetch("/api/transacciones")
             .then(res => res.json())
@@ -70,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td>${tx.id}</td>
                         <td>${tx.usuario?.nombre || 'N/A'}</td>
                         <td>${tx.libro?.titulo || 'N/A'}</td>
+                        <td>${tx.bibliotecario?.nombre || 'N/A'}</td>
                         <td>${tx.fechaPrestamo || ''}</td>
                         <td>${tx.fechaDevolucion || ''}</td>
                         <td>${tx.tipo}</td>
@@ -83,30 +76,13 @@ document.addEventListener("DOMContentLoaded", function () {
     formulario.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        const tipoSeleccionado = selectTipo.value;
-
-        // Validaciones manuales adicionales
-        if (!selectUsuario.value || !selectLibro.value || !tipoSeleccionado) {
-            alert("Complete todos los campos obligatorios.");
-            return;
-        }
-
-        if (tipoSeleccionado === "PRESTAMO" && !inputFechaPrestamo.value) {
-            alert("Debe ingresar la fecha de préstamo.");
-            return;
-        }
-
-        if (tipoSeleccionado === "DEVOLUCION" && !inputFechaDevolucion.value) {
-            alert("Debe ingresar la fecha de devolución.");
-            return;
-        }
-
         const transaccion = {
             usuario: { id: parseInt(selectUsuario.value) },
             libro: { id: parseInt(selectLibro.value) },
+            bibliotecario: { id: parseInt(selectBibliotecario.value) },
             fechaPrestamo: inputFechaPrestamo.value || null,
             fechaDevolucion: inputFechaDevolucion.value || null,
-            tipo: tipoSeleccionado
+            tipo: selectTipo.value
         };
 
         fetch("/api/transacciones", {
@@ -120,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(() => {
                 formulario.reset();
-                ajustarCamposSegunTipo(); // Restaurar estado inicial
                 cargarTransacciones();
             })
             .catch(error => alert(error.message));
@@ -136,6 +111,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     cargarUsuarios();
     cargarLibros();
+    cargarBibliotecarios();
     cargarTransacciones();
-    ajustarCamposSegunTipo(); // Ejecutar al inicio
 });
