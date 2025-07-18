@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Devoluciones - Biblioteca USM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+<div class="main">
+    <div class="sidebar">
+        <h2>Biblioteca USM</h2>
+        <ul>
+            <li><a href="libros.html">Libros</a></li>
+            <li><a href="usuarios.html">Usuarios</a></li>
+            <li><a href="transacciones.html">Transacciones</a></li>
+            <li><a href="devoluciones.html">Devoluciones</a></li>
+            <li><a href="multas.html">Multas</a></li>
+            <li><a href="categorias.html">Categorías</a></li>
+            <li><a href="bibliotecarios.html">Bibliotecarios</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Registrar Devolución</h1>
+
+        <form id="formularioDevolucion">
+            <label for="transaccionSelect">Transacción (Libro - Usuario):</label>
+            <select id="transaccionSelect" required>
+                <option value="">Seleccione una transacción</option>
+            </select>
+
+            <label for="fechaDevolucion">Fecha real de devolución:</label>
+            <input type="date" id="fechaDevolucion" required>
+
+            <label>
+                <input type="checkbox" id="enBuenEstado">
+                El libro está en buen estado
+            </label>
+
+            <button type="submit"><i data-lucide="save"></i> Guardar</button>
+        </form>
+
+        <h2>Historial de Devoluciones</h2>
+        <table id="tablaDevoluciones">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Libro</th>
+                <th>Usuario</th>
+                <th>Fecha Devolución</th>
+                <th>Días de Retraso</th>
+                <th>Dañado</th>
+                <th>Multa</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Se cargarán dinámicamente -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<footer>
+    Alumno Gerald Hernandez Solis
+</footer>
+
+<script src="scripts/devoluciones.js"></script>
+<script>
+    lucide.createIcons();
+</script>
+</body>
+</html>

@@ -68,4 +68,14 @@ public class TransaccionServicio {
     public void eliminarTransaccion(Long id) {
         transaccionRepositorio.deleteById(id);
     }
+
+    public List<Transaccion> listarTransaccionesPendientes() {
+        return transaccionRepositorio.findByEstado("PRESTAMO");
+    }
+
+    public List<Transaccion> listarPorEstado(String estado) {
+        return transaccionRepositorio.findByEstado(estado);
+    }
+
+
 }

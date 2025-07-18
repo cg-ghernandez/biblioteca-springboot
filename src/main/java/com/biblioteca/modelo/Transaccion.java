@@ -33,4 +33,5 @@ public class Transaccion {
 
     @Enumerated(EnumType.STRING)
     private TipoTransaccion tipo;
+    private String estado; // PRESTAMO o DEVUELTO
 }

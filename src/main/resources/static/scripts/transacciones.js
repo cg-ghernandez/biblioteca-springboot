@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectBibliotecario = document.getElementById("bibliotecario");
     const inputFechaPrestamo = document.getElementById("fechaPrestamo");
     const inputFechaDevolucion = document.getElementById("fechaDevolucion");
-    const selectTipo = document.getElementById("tipo");
+    const inputTipo = document.getElementById("tipo"); // ahora es input hidden
 
     function cargarUsuarios() {
         fetch("/api/usuarios")
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
             bibliotecario: { id: parseInt(selectBibliotecario.value) },
             fechaPrestamo: inputFechaPrestamo.value || null,
             fechaDevolucion: inputFechaDevolucion.value || null,
-            tipo: selectTipo.value
+            tipo: inputTipo.value // siempre será "PRESTAMO"
         };
 
         fetch("/api/transacciones", {

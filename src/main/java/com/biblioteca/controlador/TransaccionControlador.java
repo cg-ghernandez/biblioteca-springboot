@@ -17,6 +17,7 @@ public class TransaccionControlador {
 
     @PostMapping
     public Transaccion registrarTransaccion(@RequestBody Transaccion transaccion) {
+        transaccion.setEstado("PRESTAMO"); // Asignar estado automáticamente
         return transaccionServicio.guardarTransaccion(transaccion);
     }
 
@@ -30,8 +31,19 @@ public class TransaccionControlador {
         return transaccionServicio.listarTransacciones();
     }
 
+    @GetMapping("/estado/{estado}")
+    public List<Transaccion> listarPorEstado(@PathVariable String estado) {
+        return transaccionServicio.listarPorEstado(estado);
+    }
+
+    @GetMapping("/pendientes")
+    public List<Transaccion> obtenerTransaccionesPendientes() {
+        return transaccionServicio.listarTransaccionesPendientes();
+    }
+
     @DeleteMapping("/{id}")
     public void eliminarTransaccion(@PathVariable Long id) {
         transaccionServicio.eliminarTransaccion(id);
     }
+
 }
