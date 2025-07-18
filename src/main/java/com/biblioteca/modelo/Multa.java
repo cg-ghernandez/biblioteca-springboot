@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.*;
+
 
 @Entity
 @Data
@@ -15,6 +17,8 @@ public class Multa {
     private Long id;
 
     @OneToOne
+    @JoinColumn(name = "devolucion_id")
+    @JsonBackReference
     private Devolucion devolucion;
 
     private BigDecimal monto;

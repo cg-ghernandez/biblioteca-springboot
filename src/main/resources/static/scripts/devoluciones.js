@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const formulario = document.getElementById("formularioDevolucion");
     const tablaDevoluciones = document.getElementById("tablaDevoluciones").querySelector("tbody");
 
-    function cargarTransacciones() {
+    function cargarTransaccionesPendientes() {
         transaccionSelect.innerHTML = "<option value=''>Seleccione una transacción</option>";
         fetch("/api/transacciones")
             .then(res => res.json())
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     .then(devoluciones => {
                         const transaccionesConDevolucion = devoluciones.map(d => d.transaccion.id);
                         transacciones
-                            .filter(t => t.tipo === "PRESTAMO" && t.estado === "PRESTADO" && !transaccionesConDevolucion.includes(t.id))
+                            .filter(t => t.estado === "PRESTADO" && !transaccionesConDevolucion.includes(t.id))
                             .forEach(t => {
                                 const opcion = document.createElement("option");
                                 opcion.value = t.id;
@@ -23,28 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
                                 transaccionSelect.appendChild(opcion);
                             });
                     });
-            });
-    }
-
-    function cargarDevoluciones() {
-        tablaDevoluciones.innerHTML = "";
-        fetch("/api/devoluciones")
-            .then(res => res.json())
-            .then(data => {
-                data.forEach(dev => {
-                    const fila = document.createElement("tr");
-                    const diasRetraso = dev.conRetraso ? calcularDiasRetraso(dev.transaccion.fechaDevolucion, dev.fechaDevolucion) : 0;
-                    fila.innerHTML = `
-                        <td>${dev.id}</td>
-                        <td>${dev.transaccion.libro.titulo}</td>
-                        <td>${dev.transaccion.usuario.nombre}</td>
-                        <td>${dev.fechaDevolucion}</td>
-                        <td>${diasRetraso}</td>
-                        <td>${dev.enBuenEstado ? 'Sí' : 'No'}</td>
-                        <td>${dev.multa ? \`₡\${dev.multa.monto}\` : 'Sin multa'}</td>
-                    `;
-                    tablaDevoluciones.appendChild(fila);
-                });
             });
     }
 
@@ -78,13 +56,35 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(() => {
                 alert("Devolución registrada con éxito");
                 formulario.reset();
-                cargarTransacciones();
+                cargarTransaccionesPendientes();
                 cargarDevoluciones();
             })
             .catch(error => {
                 alert("Error: " + error.message);
             });
     });
+
+    function cargarDevoluciones() {
+        tablaDevoluciones.innerHTML = "";
+        fetch("/api/devoluciones")
+            .then(res => res.json())
+            .then(data => {
+                data.forEach(dev => {
+                    const diasRetraso = dev.conRetraso ? calcularDiasRetraso(dev.transaccion.fechaDevolucion, dev.fechaDevolucion) : 0;
+                    const fila = document.createElement("tr");
+                    fila.innerHTML = `
+                        <td>${dev.id}</td>
+                        <td>${dev.transaccion.libro?.titulo || 'N/A'}</td>
+                        <td>${dev.transaccion.usuario?.nombre || 'N/A'}</td>
+                        <td>${dev.fechaDevolucion}</td>
+                        <td>${diasRetraso}</td>
+                        <td>${dev.enBuenEstado ? 'No' : 'Sí'}</td>
+                        <td>${dev.multa ? `₡${dev.multa.monto}` : 'Sin multa'}</td>
+                    `;
+                    tablaDevoluciones.appendChild(fila);
+                });
+            });
+    }
 
     function calcularDiasRetraso(fechaEsperada, fechaReal) {
         const f1 = new Date(fechaEsperada);
@@ -93,6 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return dif > 0 ? Math.floor(dif / (1000 * 60 * 60 * 24)) : 0;
     }
 
-    cargarTransacciones();
+    cargarTransaccionesPendientes();
     cargarDevoluciones();
 });

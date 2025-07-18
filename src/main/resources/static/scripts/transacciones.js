@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectBibliotecario = document.getElementById("bibliotecario");
     const inputFechaPrestamo = document.getElementById("fechaPrestamo");
     const inputFechaDevolucion = document.getElementById("fechaDevolucion");
-    const inputTipo = document.getElementById("tipo"); // ahora es input hidden
 
     function cargarUsuarios() {
         fetch("/api/usuarios")
@@ -23,8 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    function cargarLibros() {
-        fetch("/api/libros")
+    function cargarLibrosDisponibles() {
+        fetch("/api/libros/disponibles")
             .then(res => res.json())
             .then(libros => {
                 selectLibro.innerHTML = '<option value="">Seleccione un libro</option>';
@@ -66,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td>${tx.fechaPrestamo || ''}</td>
                         <td>${tx.fechaDevolucion || ''}</td>
                         <td>${tx.tipo}</td>
+                        <td>${tx.estado}</td>
                         <td><button onclick="eliminarTransaccion(${tx.id})">🗑️ Eliminar</button></td>
                     `;
                     tabla.appendChild(fila);
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
             bibliotecario: { id: parseInt(selectBibliotecario.value) },
             fechaPrestamo: inputFechaPrestamo.value || null,
             fechaDevolucion: inputFechaDevolucion.value || null,
-            tipo: inputTipo.value // siempre será "PRESTAMO"
+            tipo: "PRESTAMO" // fijo como préstamo
         };
 
         fetch("/api/transacciones", {
@@ -96,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(() => {
                 formulario.reset();
+                cargarLibrosDisponibles(); // recargar libros disponibles
                 cargarTransacciones();
             })
             .catch(error => alert(error.message));
@@ -104,13 +105,17 @@ document.addEventListener("DOMContentLoaded", function () {
     window.eliminarTransaccion = function (id) {
         if (confirm("¿Eliminar esta transacción?")) {
             fetch(`/api/transacciones/${id}`, { method: "DELETE" })
-                .then(() => cargarTransacciones())
+                .then(() => {
+                    cargarLibrosDisponibles(); // recargar libros disponibles
+                    cargarTransacciones();
+                })
                 .catch(() => alert("No se pudo eliminar la transacción"));
         }
     };
 
+    // Cargar datos al iniciar
     cargarUsuarios();
-    cargarLibros();
+    cargarLibrosDisponibles();
     cargarBibliotecarios();
     cargarTransacciones();
 });

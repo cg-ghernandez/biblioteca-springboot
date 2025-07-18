@@ -43,6 +43,9 @@ public class TransaccionServicio {
             }
             libro.setDisponible(false);
             libroRepositorio.save(libro);
+
+            //  Establecer el estado por defecto en PRESTADO si es préstamo
+            transaccion.setEstado("PRESTADO");
         }
 
         if (transaccion.getTipo() == TipoTransaccion.DEVOLUCION) {
@@ -70,12 +73,10 @@ public class TransaccionServicio {
     }
 
     public List<Transaccion> listarTransaccionesPendientes() {
-        return transaccionRepositorio.findByEstado("PRESTAMO");
+        return transaccionRepositorio.findByEstado("PRESTADO");
     }
 
     public List<Transaccion> listarPorEstado(String estado) {
         return transaccionRepositorio.findByEstado(estado);
     }
-
-
 }

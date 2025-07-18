@@ -1,9 +1,11 @@
 package com.biblioteca.servicio;
 
 import com.biblioteca.modelo.Devolucion;
+import com.biblioteca.modelo.Libro;
 import com.biblioteca.modelo.Multa;
 import com.biblioteca.modelo.Transaccion;
 import com.biblioteca.repositorio.DevolucionRepositorio;
+import com.biblioteca.repositorio.LibroRepositorio;
 import com.biblioteca.repositorio.MultaRepositorio;
 import com.biblioteca.repositorio.TransaccionRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class DevolucionServicio {
 
     @Autowired
     private MultaRepositorio multaRepositorio;
+
+    @Autowired
+    private LibroRepositorio libroRepositorio;  // ⬅️ Agregado para actualizar estado del libro
 
     public List<Devolucion> listarDevoluciones() {
         return devolucionRepositorio.findAll();
@@ -78,6 +83,14 @@ public class DevolucionServicio {
 
             multaRepositorio.save(multa);
         }
+
+        // ✅ Marcar libro como disponible y actualizar estado de la transacción
+        Libro libro = transaccion.getLibro();
+        libro.setDisponible(true);
+        libroRepositorio.save(libro);
+
+        transaccion.setEstado("DEVUELTO");
+        transaccionRepositorio.save(transaccion);
 
         return devolucionGuardada;
     }
