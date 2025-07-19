@@ -30,7 +30,7 @@ public class DevolucionServicio {
     private MultaRepositorio multaRepositorio;
 
     @Autowired
-    private LibroRepositorio libroRepositorio;  // ⬅️ Agregado para actualizar estado del libro
+    private LibroRepositorio libroRepositorio;
 
     public List<Devolucion> listarDevoluciones() {
         return devolucionRepositorio.findAll();
@@ -44,7 +44,6 @@ public class DevolucionServicio {
         Transaccion transaccion = transaccionRepositorio.findById(devolucion.getTransaccion().getId())
                 .orElseThrow(() -> new RuntimeException("Transacción no encontrada"));
 
-        // Determinar si hay retraso
         LocalDate fechaEsperada = transaccion.getFechaDevolucion();
         LocalDate fechaReal = devolucion.getFechaDevolucion();
         long diasRetraso = 0;
@@ -60,10 +59,8 @@ public class DevolucionServicio {
 
         devolucion.setTransaccion(transaccion);
 
-        // Guardar devolución
         Devolucion devolucionGuardada = devolucionRepositorio.save(devolucion);
 
-        // Generar multa si hay condiciones
         if (conRetraso || !devolucion.isEnBuenEstado()) {
             BigDecimal monto = BigDecimal.ZERO;
 
@@ -84,7 +81,6 @@ public class DevolucionServicio {
             multaRepositorio.save(multa);
         }
 
-        // ✅ Marcar libro como disponible y actualizar estado de la transacción
         Libro libro = transaccion.getLibro();
         libro.setDisponible(true);
         libroRepositorio.save(libro);
@@ -100,11 +96,61 @@ public class DevolucionServicio {
     }
 
     public Optional<Devolucion> actualizarDevolucion(Long id, Devolucion nuevaDevolucion) {
-        return devolucionRepositorio.findById(id).map(devolucionExistente -> {
-            devolucionExistente.setFechaDevolucion(nuevaDevolucion.getFechaDevolucion());
-            devolucionExistente.setEnBuenEstado(nuevaDevolucion.isEnBuenEstado());
-            devolucionExistente.setTransaccion(nuevaDevolucion.getTransaccion());
-            return devolucionRepositorio.save(devolucionExistente);
+        return devolucionRepositorio.findById(id).map(dev -> {
+            // Actualizar fecha y estado
+            dev.setFechaDevolucion(nuevaDevolucion.getFechaDevolucion());
+            dev.setEnBuenEstado(nuevaDevolucion.isEnBuenEstado());
+
+            Transaccion transaccion = transaccionRepositorio.findById(nuevaDevolucion.getTransaccion().getId())
+                    .orElseThrow(() -> new RuntimeException("Transacción no encontrada"));
+
+            dev.setTransaccion(transaccion);
+
+            // Recalcular si hay retraso
+            LocalDate esperado = transaccion.getFechaDevolucion();
+            LocalDate real = nuevaDevolucion.getFechaDevolucion();
+
+            boolean conRetraso = esperado != null && real != null && real.isAfter(esperado);
+            dev.setConRetraso(conRetraso);
+
+            // Calcular nueva multa
+            if (conRetraso || !nuevaDevolucion.isEnBuenEstado()) {
+                long diasRetraso = conRetraso ? ChronoUnit.DAYS.between(esperado, real) : 0;
+                BigDecimal monto = BigDecimal.ZERO;
+
+                if (conRetraso) {
+                    monto = monto.add(BigDecimal.valueOf(1000L * diasRetraso));
+                }
+
+                if (!nuevaDevolucion.isEnBuenEstado()) {
+                    monto = monto.add(BigDecimal.valueOf(5000));
+                }
+
+                // Si ya existe multa, actualizarla
+                if (dev.getMulta() != null) {
+                    dev.getMulta().setMonto(monto);
+                    dev.getMulta().setFechaPago(null);
+                    dev.getMulta().setPagada(false);
+                    multaRepositorio.save(dev.getMulta());
+                } else {
+                    // Crear nueva multa
+                    Multa nueva = new Multa();
+                    nueva.setDevolucion(dev);
+                    nueva.setMonto(monto);
+                    nueva.setPagada(false);
+                    nueva.setFechaPago(null);
+                    multaRepositorio.save(nueva);
+                }
+
+            } else {
+                // Si no hay condiciones, eliminar la multa si existe
+                if (dev.getMulta() != null) {
+                    multaRepositorio.delete(dev.getMulta());
+                    dev.setMulta(null);
+                }
+            }
+
+            return devolucionRepositorio.save(dev);
         });
     }
 }

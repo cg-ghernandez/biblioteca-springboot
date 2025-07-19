@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     const transaccionSelect = document.getElementById("transaccionSelect");
     const fechaDevolucionInput = document.getElementById("fechaDevolucion");
@@ -79,8 +80,35 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td>${dev.diasRetraso}</td>
                         <td>${dev.enBuenEstado ? 'No' : 'Sí'}</td>
                         <td>${dev.multaMonto ? `₡${dev.multaMonto} (${dev.multaPagada ? 'Pagada' : 'Pendiente'})` : 'Sin multa'}</td>
+                        <td><button class="editarFechaBtn" data-id="${dev.id}" data-fecha="${dev.fechaDevolucion}">✏️</button></td>
                     `;
                     tablaDevoluciones.appendChild(fila);
+
+                    fila.querySelector(".editarFechaBtn").addEventListener("click", () => {
+                        const nuevaFecha = prompt("Ingrese la nueva fecha de devolución (YYYY-MM-DD):", dev.fechaDevolucion);
+                        if (!nuevaFecha) return;
+
+                        const devolucionActualizada = {
+                            fechaDevolucion: nuevaFecha,
+                            enBuenEstado: dev.enBuenEstado,
+                            transaccion: { id: dev.transaccionId || dev.id || 0 }
+                        };
+
+                        fetch(`/api/devoluciones/${dev.id}`, {
+                            method: "PUT",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(devolucionActualizada)
+                        })
+                            .then(res => {
+                                if (!res.ok) throw new Error("No se pudo actualizar la fecha");
+                                return res.json();
+                            })
+                            .then(() => {
+                                alert("Fecha actualizada correctamente");
+                                cargarDevoluciones();
+                            })
+                            .catch(err => alert("Error: " + err.message));
+                    });
                 });
             });
     }
