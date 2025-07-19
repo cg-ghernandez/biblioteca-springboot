@@ -18,7 +18,8 @@ public class Multa {
 
     @OneToOne
     @JoinColumn(name = "devolucion_id")
-    @JsonBackReference
+    //@JsonBackReference
+    @JsonManagedReference
     private Devolucion devolucion;
 
     private BigDecimal monto;

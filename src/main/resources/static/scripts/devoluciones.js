@@ -66,31 +66,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function cargarDevoluciones() {
         tablaDevoluciones.innerHTML = "";
-        fetch("/api/devoluciones")
+        fetch("/api/devoluciones/historial")
             .then(res => res.json())
             .then(data => {
                 data.forEach(dev => {
-                    const diasRetraso = dev.conRetraso ? calcularDiasRetraso(dev.transaccion.fechaDevolucion, dev.fechaDevolucion) : 0;
                     const fila = document.createElement("tr");
                     fila.innerHTML = `
                         <td>${dev.id}</td>
-                        <td>${dev.transaccion.libro?.titulo || 'N/A'}</td>
-                        <td>${dev.transaccion.usuario?.nombre || 'N/A'}</td>
+                        <td>${dev.libro}</td>
+                        <td>${dev.usuario}</td>
                         <td>${dev.fechaDevolucion}</td>
-                        <td>${diasRetraso}</td>
+                        <td>${dev.diasRetraso}</td>
                         <td>${dev.enBuenEstado ? 'No' : 'Sí'}</td>
-                        <td>${dev.multa ? `₡${dev.multa.monto}` : 'Sin multa'}</td>
+                        <td>${dev.multaMonto ? `₡${dev.multaMonto} (${dev.multaPagada ? 'Pagada' : 'Pendiente'})` : 'Sin multa'}</td>
                     `;
                     tablaDevoluciones.appendChild(fila);
                 });
             });
-    }
-
-    function calcularDiasRetraso(fechaEsperada, fechaReal) {
-        const f1 = new Date(fechaEsperada);
-        const f2 = new Date(fechaReal);
-        const dif = f2 - f1;
-        return dif > 0 ? Math.floor(dif / (1000 * 60 * 60 * 24)) : 0;
     }
 
     cargarTransaccionesPendientes();

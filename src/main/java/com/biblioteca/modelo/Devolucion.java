@@ -25,6 +25,7 @@ public class Devolucion {
     private boolean enBuenEstado;
 
     @OneToOne(mappedBy = "devolucion", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    //@JsonManagedReference
+    @JsonBackReference
     private Multa multa;
 }

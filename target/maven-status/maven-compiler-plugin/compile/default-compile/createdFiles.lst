@@ -9,6 +9,7 @@ com/biblioteca/repositorio/LibroRepositorio.class
 com/biblioteca/repositorio/DevolucionRepositorio.class
 com/biblioteca/controlador/TransaccionControlador.class
 com/biblioteca/modelo/Categoria.class
+com/biblioteca/dto/DevolucionDTO.class
 com/biblioteca/modelo/enums/TipoTransaccion.class
 com/biblioteca/modelo/HistorialPrestamo.class
 com/biblioteca/servicio/BibliotecarioServicio.class

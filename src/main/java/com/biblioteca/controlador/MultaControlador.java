@@ -42,5 +42,19 @@ public class MultaControlador {
                 .map(multa -> ResponseEntity.ok().body(multa))
                 .orElse(ResponseEntity.notFound().build());
     }
+    @PutMapping("/{id}/pagar")
+    public ResponseEntity<Void> marcarComoPagada(@PathVariable Long id) {
+        Optional<Multa> multaOptional = multaServicio.obtenerMultaPorId(id);
+        if (multaOptional.isPresent()) {
+            Multa multa = multaOptional.get();
+            multa.setPagada(true);
+            multa.setFechaPago(java.time.LocalDate.now());
+            multaServicio.guardarMulta(multa);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 }
