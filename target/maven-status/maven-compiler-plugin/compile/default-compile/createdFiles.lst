@@ -7,6 +7,7 @@ com/biblioteca/modelo/Multa.class
 com/biblioteca/servicio/LibroServicio.class
 com/biblioteca/repositorio/LibroRepositorio.class
 com/biblioteca/repositorio/DevolucionRepositorio.class
+com/biblioteca/repositorio/ReporteRepositorio.class
 com/biblioteca/controlador/TransaccionControlador.class
 com/biblioteca/modelo/Categoria.class
 com/biblioteca/dto/DevolucionDTO.class
@@ -20,6 +21,7 @@ com/biblioteca/controlador/CategoriaControlador.class
 com/biblioteca/repositorio/HistorialPrestamoRepositorio.class
 com/biblioteca/servicio/TransaccionServicio.class
 com/biblioteca/servicio/UsuarioServicio.class
+com/biblioteca/dto/ReporteLibroMasPrestadoDTO.class
 com/biblioteca/servicio/DevolucionServicio.class
 com/biblioteca/servicio/HistorialPrestamoServicio.class
 com/biblioteca/repositorio/UsuarioRepositorio.class
@@ -27,9 +29,11 @@ com/biblioteca/controlador/DevolucionControlador.class
 com/biblioteca/BibliotecaApplication.class
 com/biblioteca/repositorio/BibliotecarioRepositorio.class
 com/biblioteca/modelo/Usuario.class
+com/biblioteca/servicio/ReporteServicio.class
 com/biblioteca/repositorio/CategoriaRepositorio.class
 com/biblioteca/repositorio/MultaRepositorio.class
 com/biblioteca/controlador/InicioController.class
+com/biblioteca/controlador/ReporteControlador.class
 com/biblioteca/modelo/Libro.class
 com/biblioteca/controlador/UsuarioControlador.class
 com/biblioteca/repositorio/TransaccionRepositorio.class

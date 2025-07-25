@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reportes - Biblioteca USM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+<div class="main">
+    <div class="sidebar">
+        <h2>Biblioteca USM</h2>
+        <ul>
+            <li><a href="libros.html">Libros</a></li>
+            <li><a href="usuarios.html">Usuarios</a></li>
+            <li><a href="transacciones.html">Transacciones</a></li>
+            <li><a href="devoluciones.html">Devoluciones</a></li>
+            <li><a href="multas.html">Multas</a></li>
+            <li><a href="categorias.html">Categorías</a></li>
+            <li><a href="bibliotecarios.html">Bibliotecarios</a></li>
+            <li><a href="reportes.html" class="activo">Reportes</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Reportes de Biblioteca</h1>
+
+        <section>
+            <h2>📚 Libros Más Prestados</h2>
+            <table id="tablaLibrosMasPrestados">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Total de Préstamos</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Contenido dinámico con JS -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
+
+<script src="scripts/reportes.js"></script>
+</body>
+</html>

@@ -2,6 +2,7 @@
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/modelo/enums/TipoTransaccion.java
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/servicio/TransaccionServicio.java
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/servicio/BibliotecarioServicio.java
+/home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/controlador/ReporteControlador.java
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/repositorio/HistorialPrestamoRepositorio.java
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/modelo/Bibliotecario.java
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/modelo/Categoria.java
@@ -16,6 +17,7 @@
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/controlador/MultaControlador.java
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/repositorio/UsuarioRepositorio.java
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/BibliotecaApplication.java
+/home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/dto/ReporteLibroMasPrestadoDTO.java
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/modelo/Libro.java
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/controlador/TransaccionControlador.java
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/controlador/CategoriaControlador.java
@@ -28,6 +30,8 @@
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/servicio/DevolucionServicio.java
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/modelo/Transaccion.java
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/modelo/Devolucion.java
+/home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/servicio/ReporteServicio.java
+/home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/repositorio/ReporteRepositorio.java
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/repositorio/CategoriaRepositorio.java
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/controlador/LibroControlador.java
 /home/ghernandez/Documents/01 -Seguridad/01- U San_Marcos/2025/II Cuatri/BISV-07 MODELOS DE PROGRAMACION II 2-2025 G 1 -D/biblioteca_proyecto_inicial/src/main/java/com/biblioteca/repositorio/MultaRepositorio.java
