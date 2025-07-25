@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilos.css">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+
 </head>
 <body>
 <div class="main">
@@ -28,6 +33,9 @@
 
         <section>
             <h2>📚 Libros Más Prestados</h2>
+            <button onclick="exportarLibrosMasPrestadosPDF()">🧾 Exportar a PDF</button>
+            <button onclick="exportarLibrosMasPrestadosExcel()">📊 Exportar a Excel</button>
+
             <table id="tablaLibrosMasPrestados">
                 <thead>
                 <tr>
@@ -43,6 +51,8 @@
             </table>
 
             <h2>Usuarios que más solicitan préstamos</h2>
+            <button onclick="exportarUsuariosMasActivosPDF()">🧾 Reporte PDF</button>
+            <button onclick="exportarUsuariosMasActivosExcel()">📊 Exportar a Excel</button>
             <table id="tablaUsuariosMasActivos">
                 <thead>
                 <tr>
