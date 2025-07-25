@@ -1,6 +1,7 @@
 package com.biblioteca.servicio;
 
 import com.biblioteca.dto.ReporteLibroMasPrestadoDTO;
+import com.biblioteca.dto.ReporteUsuarioMasActivoDTO;
 import com.biblioteca.repositorio.ReporteRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,4 +17,9 @@ public class ReporteServicio {
     public List<ReporteLibroMasPrestadoDTO> obtenerLibrosMasPrestados() {
         return reporteRepositorio.obtenerLibrosMasPrestados();
     }
+
+    public List<ReporteUsuarioMasActivoDTO> obtenerUsuariosMasActivos() {
+        return reporteRepositorio.obtenerUsuariosMasActivos();
+    }
+
 }

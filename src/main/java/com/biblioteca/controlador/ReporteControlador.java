@@ -1,6 +1,7 @@
 package com.biblioteca.controlador;
 
 import com.biblioteca.dto.ReporteLibroMasPrestadoDTO;
+import com.biblioteca.dto.ReporteUsuarioMasActivoDTO;
 import com.biblioteca.servicio.ReporteServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,4 +19,10 @@ public class ReporteControlador {
     public List<ReporteLibroMasPrestadoDTO> librosMasPrestados() {
         return reporteServicio.obtenerLibrosMasPrestados();
     }
+
+    @GetMapping("/usuarios-mas-activos")
+    public List<ReporteUsuarioMasActivoDTO> usuariosMasActivos() {
+        return reporteServicio.obtenerUsuariosMasActivos();
+    }
+
 }

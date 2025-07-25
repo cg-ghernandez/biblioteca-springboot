@@ -16,6 +16,7 @@ com/biblioteca/modelo/HistorialPrestamo.class
 com/biblioteca/servicio/BibliotecarioServicio.class
 com/biblioteca/servicio/MultaServicio.class
 com/biblioteca/controlador/BibliotecarioControlador.class
+com/biblioteca/dto/ReporteUsuarioMasActivoDTO.class
 com/biblioteca/servicio/CategoriaServicio.class
 com/biblioteca/controlador/CategoriaControlador.class
 com/biblioteca/repositorio/HistorialPrestamoRepositorio.class
