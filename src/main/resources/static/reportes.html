@@ -10,6 +10,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
+    <style>
+        .submenu {
+            display: none;
+            list-style: none;
+            padding-left: 20px;
+        }
+        .submenu.show {
+            display: block;
+        }
+        .sidebar ul li a.toggle {
+            cursor: pointer;
+        }
+    </style>
+
 
 </head>
 <body>
@@ -17,14 +31,19 @@
     <div class="sidebar">
         <h2>Biblioteca USM</h2>
         <ul>
-            <li><a href="libros.html">Libros</a></li>
-            <li><a href="usuarios.html">Usuarios</a></li>
             <li><a href="transacciones.html">Transacciones</a></li>
             <li><a href="devoluciones.html">Devoluciones</a></li>
             <li><a href="multas.html">Multas</a></li>
-            <li><a href="categorias.html">Categorías</a></li>
-            <li><a href="bibliotecarios.html">Bibliotecarios</a></li>
             <li><a href="reportes.html" class="activo">Reportes</a></li>
+            <li>
+                <a class="toggle" onclick="toggleSubmenu()">Administración</a>
+                <ul class="submenu" id="adminSubmenu">
+                    <li><a href="bibliotecarios.html">Bibliotecarios</a></li>
+                    <li><a href="libros.html">Libros</a></li>
+                    <li><a href="usuarios.html">Usuarios</a></li>
+                    <li><a href="categorias.html">Categorías</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 
@@ -72,5 +91,11 @@
 </div>
 
 <script src="scripts/reportes.js"></script>
+<script>
+    function toggleSubmenu() {
+        const submenu = document.getElementById('adminSubmenu');
+        submenu.classList.toggle('show');
+    }
+</script>
 </body>
 </html>

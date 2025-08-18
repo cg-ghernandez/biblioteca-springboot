@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios - Biblioteca USM</title>
     <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        .submenu {
+            display: none;
+            list-style: none;
+            padding-left: 20px;
+        }
+        .submenu.show {
+            display: block;
+        }
+        .sidebar ul li a.toggle {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <div class="main">
@@ -13,14 +26,19 @@
     <div class="sidebar">
         <h2>Biblioteca USM</h2>
         <ul>
-            <li><a href="libros.html">Libros</a></li>
-            <li><a href="usuarios.html">Usuarios</a></li>
             <li><a href="transacciones.html">Transacciones</a></li>
             <li><a href="devoluciones.html">Devoluciones</a></li>
             <li><a href="multas.html">Multas</a></li>
-            <li><a href="categorias.html">Categorías</a></li>
-            <li><a href="bibliotecarios.html">Bibliotecarios</a></li>
             <li><a href="reportes.html" class="activo">Reportes</a></li>
+            <li>
+                <a class="toggle" onclick="toggleSubmenu()">Administración</a>
+                <ul class="submenu" id="adminSubmenu">
+                    <li><a href="bibliotecarios.html">Bibliotecarios</a></li>
+                    <li><a href="libros.html">Libros</a></li>
+                    <li><a href="usuarios.html">Usuarios</a></li>
+                    <li><a href="categorias.html">Categorías</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 
@@ -57,5 +75,11 @@
 </footer>
 
 <script src="scripts/usuarios.js"></script>
+<script>
+    function toggleSubmenu() {
+        const submenu = document.getElementById('adminSubmenu');
+        submenu.classList.toggle('show');
+    }
+</script>
 </body>
 </html>
