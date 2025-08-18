@@ -19,9 +19,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td>${libro.autor}</td>
                         <td>${libro.isbn}</td>
                         <td>${libro.disponible ? "Sí" : "No"}</td>
+                        <td>${libro.categoria?.nombre || "Sin categoría"}</td>
                         <td>
-                            <button onclick="editarLibro(${libro.id})">✏️ Editar</button>
-                            <button onclick="eliminarLibro(${libro.id})">🗑️ Eliminar</button>
+                            <button class="btn btn-sm btn-primary me-1" onclick="editarLibro(${libro.id})">✏️</button>
+                            <button class="btn btn-sm btn-danger" onclick="eliminarLibro(${libro.id})">🗑️</button>
                         </td>
                     `;
                     tabla.appendChild(fila);

@@ -1,14 +1,13 @@
 package com.biblioteca.controlador;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class InicioController {
 
     @GetMapping("/")
     public String inicio() {
-        return "¡Bienvenido a la Biblioteca!";
+        return "redirect:/libros.html";
     }
-
 }
